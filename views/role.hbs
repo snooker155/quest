@@ -4,7 +4,8 @@
     <meta charset="utf-8"/>
 
     <!-- Ensure that everything scales appropriately on a mobile device -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
     <!-- Let's borrow a cool looking Font from Google -->
     <link href='https://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
@@ -20,23 +21,73 @@
     <div id="role-game-template">
         <div class="createGameWrapper">
 
-            <div class="info" id="name">Name: {{role}}</div>
-            <div class="info" id="role">Role: {{role}}</div>
-            <div class="info" id="story">Story: {{role}}</div>
-            <div class="info" id="tasks">Tasks: {{role}}</div>
-
-            <div id="gameURL" class="infoBig">Error!</div>
-
-            <div class="info">Then click <strong>JOIN</strong> and enter your Code</div>
-
-            <div style="width:100%; display: inline-block;">
-                <div style="width:50%; float: left;">
-                    <div class="info right" style="margin-right:50px;" id="timer">Timer:</div>
+            <div class="role-wrapper">
+                <div class="info role-info" id="name">Name: {{role}}</div>
+                <div class="info role-info" id="role">Role: {{role}}</div>
+                <div class="info-wrapper">
+                    <div id="tasks">
+                        <div class="tasks-header info">
+                            Tasks
+                        </div>
+                        <div class="tasks-list">
+                            <div class="task">
+                                <div class="task-header">
+                                    <div style="width: 25%; float: left; font-size: 1.2em; font-weight: 700;">
+                                        {{mainTaskHeader}}
+                                    </div>
+                                    <div class="task-form">
+                                        <label for="main-task">Answer:</label>
+                                        <input id="main-task" type="text"/>
+                                        <button class="btn" id="mainTaskAnswer">Send</button>
+                                    </div>
+                                </div>
+                                <div class="task-description">
+                                    {{mainTaskDescription}}
+                                </div>
+                            </div>
+                            <div class="task">
+                                <div class="task-header">
+                                    <div style="width: 25%; float: left; font-size: 1.2em; font-weight: 700;">
+                                        {{subTaskOneHeader}}
+                                    </div>
+                                    <div class="task-form">
+                                        <label for="sub-task-1">Answer:</label>
+                                        <input id="sub-task-1" type="text"/>
+                                        <button class="btn" id="subTaskOneAnswer">Send</button>
+                                    </div>
+                                </div>
+                                <div class="task-description">
+                                    {{subTaskOneDescription}}
+                                </div>
+                            </div>
+                            <div class="task">
+                                <div class="task-header">
+                                    <div style="width: 25%; float: left; font-size: 1.2em; font-weight: 700;">
+                                        {{subTaskTwoHeader}}
+                                    </div>
+                                    <div class="task-form">
+                                        <label for="sub-task-2">Answer:</label>
+                                        <input id="sub-task-2" type="text"/>
+                                        <button class="btn" id="subTaskTwoAnswer">Send</button>
+                                    </div>
+                                </div>
+                                <div class="task-description">
+                                    {{subTaskTwoDescription}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div style="width:50%; float: left;">
-                    <div class="info left" id="timer"><span id="timer-value">0</span></div>
+                <div class="story-wrapper">
+                    <div class="info" id="story">
+                        <div class="story-header">Story:</div>
+                        <div>
+                            {{role}}
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>

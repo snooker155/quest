@@ -1,5 +1,5 @@
 ;
-jQuery(function($){
+jQuery(function ($) {
     'use strict';
 
     var App = {
@@ -22,37 +22,70 @@ jQuery(function($){
          */
         cacheElements: function () {
             App.$doc = $(document);
+            App.$tasksList = $(".tasks-list");
         },
 
         /**
          * Create some click handlers for the various buttons that appear on-screen.
          */
         bindEvents: function () {
-            // Player
-            App.$doc.on('click', '#btnStart',App.onPlayerStartClick);
+            App.$doc.on('click', '#mainTaskAnswer', App.checkMainTaskAnswer);
+            App.$doc.on('click', '#subTaskOneAnswer', App.checkSubTaskOneAnswer);
+            App.$doc.on('click', '#subTaskTwoAnswer', App.checkSubTaskTwoAnswer);
         },
 
-        /**
-         * Show the initial Anagrammatix Title Screen
-         * (with Start and Join buttons)
-         */
-        showInitScreen: function() {
-            App.doTextFit('#name');
-            // App.doTextFit('#role');
-            // App.doTextFit('#story');
-            // App.doTextFit('#tasks');
+        showInitScreen: function () {
+
         },
 
-        /**
-         * The player entered their name and gameId (hopefully)
-         * and clicked Start.
-         */
-        onPlayerStartClick: function() {
-            // console.log('Player clicked "Start"');
+        checkMainTaskAnswer: function () {
+            var answer = $('#main-task').val();
+            if (answer) {
+                console.log(answer);
+                $.ajax({
+                    url: window.location+"/answer/main",
+                    method: "POST",
+                    data: {answer: answer},
+                })
+                    .done(function (data) {
+                        if (console && console.log) {
+                            console.log("Sample of data:", data.slice(0, 100));
+                        }
+                    });
+            }
+        },
 
-            var playerCode = $('#inputPlayerCode').val();
-            if(playerCode){
-                window.location.replace(window.location.href.length-5+"roles/"+playerCode);
+        checkSubTaskOneAnswer: function () {
+            var answer = $('#sub-task-1').val();
+            if (answer) {
+                console.log(answer);
+                $.ajax({
+                    url: window.location+"/answer/subone",
+                    method: "POST",
+                    data: {answer: answer},
+                })
+                    .done(function (data) {
+                        if (console && console.log) {
+                            console.log("Sample of data:", data.slice(0, 100));
+                        }
+                    });
+            }
+        },
+
+        checkSubTaskTwoAnswer: function () {
+            var answer = $('#sub-task-2').val();
+            if (answer) {
+                console.log(answer);
+                $.ajax({
+                    url: window.location+"/answer/subtwo",
+                    method: "POST",
+                    data: {answer: answer},
+                })
+                    .done(function (data) {
+                        if (console && console.log) {
+                            console.log("Sample of data:", data.slice(0, 100));
+                        }
+                    });
             }
         },
 
@@ -62,15 +95,15 @@ jQuery(function($){
          *
          * @param el The parent element of some text
          */
-        doTextFit : function(el) {
+        doTextFit: function (el) {
             textFit(
                 $(el)[0],
                 {
-                    alignHoriz:true,
-                    alignVert:false,
-                    widthOnly:true,
-                    reProcess:true,
-                    maxFontSize:300
+                    alignHoriz: true,
+                    alignVert: false,
+                    widthOnly: true,
+                    reProcess: true,
+                    maxFontSize: 300
                 }
             );
         }
